@@ -304,9 +304,16 @@ namespace TextFilter
 
         private void Save_Click(object sender, EventArgs e)
         {
-            saveFileDialog1.ShowDialog();
-            string name = saveFileDialog1.FileName;
-            saveContent(name);
+            DialogResult result = saveFileDialog1.ShowDialog();
+            if (result != DialogResult.Cancel)
+            {
+                string name = saveFileDialog1.FileName;
+                saveContent(name);
+            }
+            //saveFileDialog1.ShowDialog();
+            //string name = saveFileDialog1.FileName;
+            //if(name != "")
+                //saveContent(name);
         }
 
         private void saveContent(string fileName)
