@@ -34,11 +34,18 @@
             this.Area = new System.Windows.Forms.ComboBox();
             this.Gender = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.close = new System.Windows.Forms.Button();
             this.min = new System.Windows.Forms.Button();
             this.max = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,6 +63,7 @@
             this.Upload.Text = "Upload";
             this.Upload.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.Upload.UseVisualStyleBackColor = false;
+            this.Upload.Click += new System.EventHandler(this.Upload_Click);
             // 
             // Start
             // 
@@ -70,6 +78,7 @@
             this.Start.TabIndex = 1;
             this.Start.Text = "Start";
             this.Start.UseVisualStyleBackColor = false;
+            this.Start.Click += new System.EventHandler(this.Start_Click);
             // 
             // Save
             // 
@@ -84,6 +93,7 @@
             this.Save.TabIndex = 2;
             this.Save.Text = "Save";
             this.Save.UseVisualStyleBackColor = false;
+            this.Save.Click += new System.EventHandler(this.Save_Click);
             // 
             // Area
             // 
@@ -93,6 +103,7 @@
             this.Area.Name = "Area";
             this.Area.Size = new System.Drawing.Size(135, 24);
             this.Area.TabIndex = 3;
+            this.Area.SelectedValueChanged += new System.EventHandler(this.Area_TextChanged);
             // 
             // Gender
             // 
@@ -102,6 +113,7 @@
             this.Gender.Name = "Gender";
             this.Gender.Size = new System.Drawing.Size(135, 24);
             this.Gender.TabIndex = 4;
+            this.Gender.SelectedValueChanged += new System.EventHandler(this.Gender_TextChanged);
             // 
             // dataGridView1
             // 
@@ -110,10 +122,41 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.Column5});
             this.dataGridView1.Location = new System.Drawing.Point(12, 127);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(960, 414);
+            this.dataGridView1.Size = new System.Drawing.Size(956, 403);
             this.dataGridView1.TabIndex = 5;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Num1";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Num2";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Area";
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Name";
+            this.Column4.Name = "Column4";
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Gender";
+            this.Column5.Name = "Column5";
             // 
             // label1
             // 
@@ -145,7 +188,7 @@
             this.close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.close.Font = new System.Drawing.Font("Arial Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.close.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.close.Location = new System.Drawing.Point(895, 5);
+            this.close.Location = new System.Drawing.Point(891, 5);
             this.close.Margin = new System.Windows.Forms.Padding(0);
             this.close.Name = "close";
             this.close.Size = new System.Drawing.Size(25, 15);
@@ -162,7 +205,7 @@
             this.min.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.min.Font = new System.Drawing.Font("Agency FB", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.min.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.min.Location = new System.Drawing.Point(925, 5);
+            this.min.Location = new System.Drawing.Point(921, 5);
             this.min.Name = "min";
             this.min.Size = new System.Drawing.Size(25, 15);
             this.min.TabIndex = 9;
@@ -176,7 +219,7 @@
             this.max.BackColor = System.Drawing.Color.MidnightBlue;
             this.max.FlatAppearance.BorderSize = 0;
             this.max.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.max.Location = new System.Drawing.Point(955, 5);
+            this.max.Location = new System.Drawing.Point(951, 5);
             this.max.Name = "max";
             this.max.Size = new System.Drawing.Size(25, 15);
             this.max.TabIndex = 10;
@@ -184,12 +227,16 @@
             this.max.UseVisualStyleBackColor = false;
             this.max.Click += new System.EventHandler(this.max_Click);
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightYellow;
-            this.ClientSize = new System.Drawing.Size(984, 561);
+            this.ClientSize = new System.Drawing.Size(980, 550);
             this.Controls.Add(this.max);
             this.Controls.Add(this.min);
             this.Controls.Add(this.close);
@@ -223,6 +270,13 @@
         private System.Windows.Forms.Button close;
         private System.Windows.Forms.Button min;
         private System.Windows.Forms.Button max;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 
